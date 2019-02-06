@@ -1,18 +1,17 @@
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.svm import SVC
 from sklearn import metrics
-from sklearn.naive_bayes import GaussianNB
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
 from sklearn import svm
+
 # importing the data from csv files
 #model = svm.SVC(kernel='rbf', C=1, gamma=1)
 df1 = pd.read_csv(
-    '~/WorkSpace//GitHub/NaiveBayes-HeartDisease/tubes2_HeartDisease_train.csv', na_values=['?'])
+    '~/WorkSpace/GitHub/NaiveBayes-HeartDisease/tubes2_HeartDisease_train.csv', na_values=['?'])
 #df1 = pd.read_csv('~/WorkSpace//GitHub/NaiveBayes-HeartDisease/heart.csv', na_values=['?'])
 df1.shape
 df1.dropna(thresh=8, inplace=True)
@@ -47,18 +46,6 @@ df1.isnull().sum()
 X = df1[['Column3', 'Column9', 'Column11', 'Column12', 'Column13']]
 y = df1['Column14']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
-# df1['Column11'].value_counts()
-model = GaussianNB()
-model.fit(X_train, y_train)
-prediction = model.predict(X_test)
-
-plt.scatter(y_test, prediction)
-print(classification_report(y_test, prediction))
-
-print('MAE:', metrics.mean_absolute_error(y_test, prediction))
-print('MSE:', metrics.mean_squared_error(y_test, prediction))
-print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
-#
 #
 #
 #
