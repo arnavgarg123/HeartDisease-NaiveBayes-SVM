@@ -54,12 +54,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 #
 #
 #
-model = SVC(gamma='scale')
+model = SVC(gamma='scale', kernel='linear')
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
+print(metrics.accuracy_score(predictions, y_test) * 100)
 print(confusion_matrix(y_test, predictions))
 print(classification_report(y_test, predictions))
 print('MAE:', metrics.mean_absolute_error(y_test, predictions))
 print('MSE:', metrics.mean_squared_error(y_test, predictions))
 print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, predictions)))
-metrics.accuracy_score(predictions, y_test)
