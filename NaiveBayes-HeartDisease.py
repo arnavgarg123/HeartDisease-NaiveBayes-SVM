@@ -7,9 +7,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 # importing the data from csv files
-#model = svm.SVC(kernel='rbf', C=1, gamma=1)
 df1 = pd.read_csv(
-    '~/WorkSpace/GitHub/NaiveBayes-HeartDisease/tubes2_HeartDisease_train.csv', na_values=['?'])
+    '/home/arnav/WorkSpace/GitHub/HeartDisease-NaiveBayes-SVM/tubes2_HeartDisease_train.csv', na_values=['?'])
 #df1 = pd.read_csv('~/WorkSpace//GitHub/NaiveBayes-HeartDisease/heart.csv', na_values=['?'])
 df1.shape
 df1.dropna(thresh=8, inplace=True)
@@ -27,6 +26,9 @@ df1.dropna(subset=['Column11', 'Column12', 'Column13'], how='all', inplace=True)
 
 df1.head(10)
 df1['Column5'].replace(0, 221, inplace=True)
+df1['Column14'].replace(2, 1, inplace=True)
+df1['Column14'].replace(3, 1, inplace=True)
+df1['Column14'].replace(4, 1, inplace=True)
 ##########        Data Cleaning        ##########
 # median to fill missing values
 df1['Column4'].fillna(df1['Column4'].median(), inplace=True)
@@ -55,3 +57,4 @@ print(classification_report(y_test, prediction))
 print('MAE:', metrics.mean_absolute_error(y_test, prediction))
 print('MSE:', metrics.mean_squared_error(y_test, prediction))
 print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
+metrics.accuracy_score(prediction, y_test)
