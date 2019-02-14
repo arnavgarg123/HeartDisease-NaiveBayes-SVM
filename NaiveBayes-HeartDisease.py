@@ -41,6 +41,7 @@ df1['Column12'].fillna(0, inplace=True)
 df1['Column13'].fillna(3, inplace=True)
 df1['Column11'].fillna(2, inplace=True)
 df1['Column10'].fillna(df1['Column10'].median(), inplace=True)
+df1.info()
 df1[df1['Column11'].isnull()]
 df1.isnull().sum()
 X = df1[['Column3', 'Column9', 'Column11', 'Column12', 'Column13']]
